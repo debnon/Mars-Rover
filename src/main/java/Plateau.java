@@ -6,7 +6,6 @@ public class Plateau {
     public Plateau(int xLimit, int yLimit) {
         this.xSize = xLimit;
         this.ySize = yLimit;
-
     }
 
     public int[] checkPlateauLimits() {

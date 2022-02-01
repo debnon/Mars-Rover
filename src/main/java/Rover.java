@@ -1,5 +1,7 @@
 public class Rover implements RoverMovement {
 
+
+    // check for other rover
     private int xPosition;
     private int yPosition;
     private enum Orientation {NORTH, EAST, SOUTH, WEST};
