@@ -11,4 +11,16 @@ public abstract class Plateau {
 
         return null;
     }
+
+    public static void storeRoverPosition() {
+
+    }
+
+    public static void updateRoverPosition(Object[] roverPosition) {
+
+    }
+
+    public void checkRoverPositions() {
+
+    }
 }
