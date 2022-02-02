@@ -1,4 +1,5 @@
 import org.junit.Test;
+import plateau.SquareMarsPlateau;
 
 import java.util.Arrays;
 
@@ -10,7 +11,7 @@ public class plateauTest {
     public void checkPlateauInitialization() {
 
         // arrange
-        Plateau marsPlateau = new Plateau(1, 1);
+        SquareMarsPlateau marsPlateau = new SquareMarsPlateau(1, 1);
         int[] desiredSize = {1,1};
 
         // act

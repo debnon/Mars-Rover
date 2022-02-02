@@ -1,9 +1,12 @@
-public class Plateau {
+package plateau;
 
-    private int xSize;
-    private int ySize;
+public class SquareMarsPlateau extends Plateau {
 
-    public Plateau(int xLimit, int yLimit) {
+    private final int xSize;
+    private final int ySize;
+
+    public SquareMarsPlateau(int xLimit, int yLimit) {
+        super();
         this.xSize = xLimit;
         this.ySize = yLimit;
     }
@@ -15,4 +18,6 @@ public class Plateau {
 
         return maxCoOrdinates;
     }
+
+
 }
