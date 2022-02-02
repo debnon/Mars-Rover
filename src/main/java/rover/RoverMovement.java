@@ -2,16 +2,8 @@ package rover;
 
 public interface RoverMovement {
 
-    default void changePosition() {
+    void changePosition();
+    void changeOrientation();
+    void moveForward();
 
-    }
-
-    private String changeOrientation() {
-
-        return null;
-    }
-
-    private void moveForward() {
-
-    }
 }

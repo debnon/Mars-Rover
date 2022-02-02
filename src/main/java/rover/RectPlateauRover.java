@@ -2,7 +2,7 @@ package rover;
 
 import plateau.Plateau;
 
-public class RectPlateauRover implements RoverMovement {
+public class RectPlateauRover extends Rover{
 
     // check for other rover
     private int xPosition;
@@ -12,7 +12,7 @@ public class RectPlateauRover implements RoverMovement {
 
     public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation) {
         // Orientation orientation = rover.Rover.Orientation.WEST;
-
+        super();
         this.xPosition = xOrigin;
         this.yPosition = yOrigin;
         this.orientation = startOrientation;
@@ -20,19 +20,14 @@ public class RectPlateauRover implements RoverMovement {
 
     }
 
-    public void changePosition() {
-        changeOrientation();
-        moveForward();
-        Plateau.updateRoverPosition(checkPosition());
-    }
-
-    private void changeOrientation() {
+    public void changeOrientation() {
 
     }
 
-    private void moveForward() {
+    public void moveForward() {
 
     }
+
 
     public Object[] checkPosition() {
         Object[] positionArray = new Object[3];
