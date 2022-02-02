@@ -2,9 +2,7 @@ package rover;
 
 import plateau.Plateau;
 
-import java.util.Arrays;
-
-public class Rover implements RoverMovement {
+public class RectPlateauRover implements RoverMovement {
 
     // check for other rover
     private int xPosition;
@@ -12,7 +10,7 @@ public class Rover implements RoverMovement {
     private Orientation orientation;
     public enum Orientation {NORTH, EAST, SOUTH, WEST};
 
-    public Rover(int xOrigin, int yOrigin, Orientation startOrientation) {
+    public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation) {
         // Orientation orientation = rover.Rover.Orientation.WEST;
 
         this.xPosition = xOrigin;

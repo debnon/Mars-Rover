@@ -1,5 +1,5 @@
 import org.junit.Test;
-import rover.Rover;
+import rover.RectPlateauRover;
 
 import java.util.Arrays;
 
@@ -11,11 +11,11 @@ public class roverTest {
     public void checkRoverInitialization() {
 
         // arrange
-        Rover testRover = new Rover(0,0, Rover.Orientation.WEST);
-        Object[] desiredRoverPosition = {0,0, Rover.Orientation.WEST};
+        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
+        Object[] desiredRoverPosition = {0,0, RectPlateauRover.Orientation.WEST};
 
         // act
-        String actualRoverPosition = testRover.checkPosition();
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
         // assert
         assertEquals(actualRoverPosition, Arrays.toString(desiredRoverPosition));

@@ -1,2 +1,6 @@
-package rover;public class Rover {
+package rover;
+
+public abstract class Rover {
+
+    
 }

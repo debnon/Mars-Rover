@@ -7,8 +7,8 @@ public interface RoverMovement {
     }
 
     private String changeOrientation() {
-        String hello = "hello";
-        return hello;
+
+        return null;
     }
 
     private void moveForward() {
