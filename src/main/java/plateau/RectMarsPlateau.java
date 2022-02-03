@@ -1,11 +1,11 @@
 package plateau;
 
-public class SquareMarsPlateau extends Plateau {
+public class RectMarsPlateau extends Plateau {
 
     private final int xSize;
     private final int ySize;
 
-    public SquareMarsPlateau(int xLimit, int yLimit) {
+    public RectMarsPlateau(int xLimit, int yLimit) {
         super();
         this.xSize = xLimit;
         this.ySize = yLimit;
