@@ -1,6 +1,7 @@
 package rover;
 
 import plateau.Plateau;
+import plateau.SquareMarsPlateau;
 
 public class RectPlateauRover extends Rover{
 
@@ -16,7 +17,7 @@ public class RectPlateauRover extends Rover{
         this.xPosition = xOrigin;
         this.yPosition = yOrigin;
         this.orientation = startOrientation;
-        Plateau.storeRoverPosition();
+        SquareMarsPlateau.storeRoverPosition();
 
     }
 

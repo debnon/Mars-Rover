@@ -1,6 +1,6 @@
 package plateau;
 
-public abstract class Plateau {
+public abstract class Plateau implements RoverInformation {
 
 
     public Plateau() {
