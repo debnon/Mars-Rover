@@ -1,19 +1,15 @@
 package plateau;
 
-public abstract class Plateau implements RoverInformation {
+public abstract class Plateau implements RoverInformation, PlateauInformation {
 
 
     public Plateau() {
 
     }
 
-    public int[] checkPlateauLimits() {
+    public static String initRoverPosition(int xOrigin, int yOrigin) {
 
-        return null;
-    }
-
-    public static void storeRoverPosition() {
-
+        return "1";
     }
 
     public static void updateRoverPosition(Object[] roverPosition) {

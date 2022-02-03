@@ -8,8 +8,11 @@ public class RectPlateauRover extends Rover{
     // check for other rover
     private int xPosition;
     private int yPosition;
-    private Orientation orientation;
+    private String roverID;
+
     public enum Orientation {NORTH, EAST, SOUTH, WEST};
+    private Orientation orientation;
+
 
     public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation) {
         // Orientation orientation = rover.Rover.Orientation.WEST;
@@ -17,7 +20,7 @@ public class RectPlateauRover extends Rover{
         this.xPosition = xOrigin;
         this.yPosition = yOrigin;
         this.orientation = startOrientation;
-        RectMarsPlateau.storeRoverPosition();
+        this.roverID = RectMarsPlateau.initRoverPosition(xOrigin, yOrigin);
 
     }
 

@@ -2,9 +2,10 @@ package plateau;
 
 public interface RoverInformation {
 
-    static void storeRoverPosition() {
+    static void storeRoverPosition(int xOrigin, int yOrigin) {
 
     }
+
     static void updateRoverPosition(Object[] roverPosition) {
 
     }
