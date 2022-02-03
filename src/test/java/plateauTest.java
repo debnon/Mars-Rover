@@ -1,5 +1,5 @@
 import org.junit.Test;
-import plateau.SquareMarsPlateau;
+import plateau.RectMarsPlateau;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,7 @@ public class plateauTest {
     public void checkPlateauInitialization() {
 
         // arrange
-        SquareMarsPlateau marsPlateau = new SquareMarsPlateau(1, 1);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(1, 1);
         int[] desiredSize = {1,1};
 
         // act
