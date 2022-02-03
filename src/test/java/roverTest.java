@@ -22,7 +22,28 @@ public class roverTest {
     }
 
     @Test
-    public void checkChangingRoverOrientation() {
+    public void checkChangingRoverOrientationLeft() {
+
+        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
+        Object[] correctRoverPosition = {1,1, RectPlateauRover.Orientation.WEST};
+
+        testRover.changePosition(0,0, 'L');
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+
+    }
+
+    @Test
+    public void checkChangingRoverOrientationRight() {
+
+        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
+        Object[] correctRoverPosition = {1,1, RectPlateauRover.Orientation.WEST};
+
+        testRover.changePosition(0,0, 'R');
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
 
     }
 

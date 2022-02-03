@@ -21,14 +21,19 @@ public class RectPlateauRover extends Rover{
 
     }
 
-    public void changeOrientation() {
+    public void changePosition(int xMovement, int yMovement, char reOrientation) {
+        changeOrientation(reOrientation);
+        moveForward(xMovement, yMovement);
+        Plateau.updateRoverPosition(checkPosition());
+    }
+
+    private static  void moveForward(int xMovement, int yMovement) {
 
     }
 
-    public void moveForward() {
+    private void changeOrientation(char reOrientation) {
 
     }
-
 
     public Object[] checkPosition() {
         Object[] positionArray = new Object[3];
