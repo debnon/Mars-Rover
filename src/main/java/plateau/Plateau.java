@@ -12,7 +12,7 @@ public abstract class Plateau implements RoverInformation, PlateauInformation {
         return "1";
     }
 
-    public static void updateRoverPosition(Object[] roverPosition) {
+    public static void updateRoverPosition(String roverID, Object[] roverPosition) {
 
     }
 

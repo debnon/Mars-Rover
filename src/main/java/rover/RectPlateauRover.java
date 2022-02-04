@@ -24,13 +24,31 @@ public class RectPlateauRover extends Rover{
 
     }
 
-    public void changePosition(int xMovement, int yMovement, char reOrientation) {
-        changeOrientation(reOrientation);
-        moveForward(xMovement, yMovement);
-        Plateau.updateRoverPosition(checkPosition());
+    public void changePosition(String desiredPosition) {
+
+        if (!desiredPosition.matches("[RLM]+")) {
+
+        }
+
+        for (char instruction : desiredPosition.toCharArray()) {
+            if (instruction == 'R' || instruction == 'L') {
+                changeOrientation(instruction);
+            } else if (instruction == 'M') {
+
+              moveForward(orientation);
+            }
+
+        }
+        Plateau.updateRoverPosition(roverID, checkPosition());
     }
 
-    private static  void moveForward(int xMovement, int yMovement) {
+    private static  void moveForward(Orientation orientation) {
+        if (orientation.equals(Orientation.NORTH)) {
+
+        }
+
+        // check if other rovers are in the way
+        // how to handle long input?
 
     }
 
