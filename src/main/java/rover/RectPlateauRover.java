@@ -15,12 +15,16 @@ public class RectPlateauRover extends Rover{
 
 
     public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation) {
-        // Orientation orientation = rover.Rover.Orientation.WEST;
+
         super();
         xPosition = xOrigin;
         yPosition = yOrigin;
         this.orientation = startOrientation;
-        this.roverID = RectMarsPlateau.initRoverPosition(xOrigin, yOrigin);
+
+        // an array is used to store the rover's position to allow abstraction from
+        // x and y coordinates in the abstract plateau class.
+        Object[] roverPosition = {xPosition, yPosition, orientation};
+        this.roverID = RectMarsPlateau.initRoverPosition(roverPosition);
 
     }
 

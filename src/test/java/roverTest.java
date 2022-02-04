@@ -65,6 +65,28 @@ public class roverTest {
     @Test
     public void checkChangingRoverPosition() {
 
+        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.NORTH);
+        Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.EAST};
+
+        testRover.changePosition("MR");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void checkChangingRoverPositionWithInvalidCommands() {
+
+        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.NORTH);
+        String correctMessage = "One of those instructions is invalid! " +
+                "Remember you can only use L (turn left), R (turn right), and M (move forward";
+
+        testRover.changePosition("MRB");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        assertEquals(actualRoverPosition, correctMessage);
+
     }
 
 }
