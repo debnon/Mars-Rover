@@ -25,9 +25,9 @@ public class roverTest {
     public void checkChangingRoverOrientationLeft() {
 
         RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
-        Object[] correctRoverPosition = {1,1, RectPlateauRover.Orientation.WEST};
+        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.SOUTH};
 
-        testRover.changePosition(0,0, 'L');
+        testRover.changePosition("L");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
         assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
@@ -38,9 +38,9 @@ public class roverTest {
     public void checkChangingRoverOrientationRight() {
 
         RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
-        Object[] correctRoverPosition = {1,1, RectPlateauRover.Orientation.WEST};
+        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.NORTH};
 
-        testRover.changePosition(0,0, 'R');
+        testRover.changePosition("R");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
         assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));

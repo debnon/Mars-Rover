@@ -60,6 +60,29 @@ public class RectPlateauRover extends Rover{
 
     private void changeOrientation(char instruction) {
 
+        if (instruction == 'L') {
+            if (orientation.equals(Orientation.NORTH)) {
+                orientation = Orientation.WEST;
+            } else if (orientation.equals(Orientation.EAST)) {
+                orientation = Orientation.NORTH;
+            } else if (orientation.equals(Orientation.SOUTH)) {
+                orientation = Orientation.EAST;
+            } else if (orientation.equals(Orientation.WEST)) {
+                orientation = Orientation.SOUTH;
+            }
+
+        } else if (instruction == 'R') {
+            if (orientation.equals(Orientation.NORTH)) {
+                orientation = Orientation.EAST;
+            } else if (orientation.equals(Orientation.EAST)) {
+                orientation = Orientation.SOUTH;
+            } else if (orientation.equals(Orientation.SOUTH)) {
+                orientation = Orientation.WEST;
+            } else if (orientation.equals(Orientation.WEST)) {
+                orientation = Orientation.NORTH;
+            }
+        }
+
     }
 
     public Object[] checkPosition() {
