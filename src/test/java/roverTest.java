@@ -7,6 +7,8 @@ import static org.junit.Assert.assertEquals;
 
 public class roverTest {
 
+
+    // how to do parameterized tests for these first four, then another for the next, etc.?
     @Test
     public void checkRoverInitialization() {
 
@@ -49,6 +51,14 @@ public class roverTest {
 
     @Test
     public void checkMovingRover() {
+
+        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.NORTH);
+        Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.NORTH};
+
+        testRover.changePosition("M");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
 
     }
 

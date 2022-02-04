@@ -44,13 +44,13 @@ public class RectPlateauRover extends Rover{
 
     private static void moveForward(Orientation orientation) {
         if (orientation.equals(Orientation.NORTH)) {
-            xPosition += 1;
-        } else if (orientation.equals(Orientation.EAST)) {
             yPosition += 1;
+        } else if (orientation.equals(Orientation.EAST)) {
+            xPosition += 1;
         } else if (orientation.equals(Orientation.SOUTH)) {
-            xPosition -= 1;
-        } else if (orientation.equals(Orientation.WEST)) {
             yPosition -= 1;
+        } else if (orientation.equals(Orientation.WEST)) {
+            xPosition -= 1;
         }
 
         // check if other rovers are in the way
