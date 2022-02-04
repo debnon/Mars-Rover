@@ -2,13 +2,13 @@ package rover;
 
 public interface RoverMovement {
 
-    void changePosition(int xMovement, int yMovement, char reOrientation);
+    void changePosition(String desiredPosition);
 
-    private void changeOrientation(char reOrientation) {
+    private void changeOrientation(String desiredPosition) {
 
     }
 
-    private void moveForward(int xMovement, int yMovement) {
+    private void moveForward(RectPlateauRover.Orientation orientation) {
 
     }
 

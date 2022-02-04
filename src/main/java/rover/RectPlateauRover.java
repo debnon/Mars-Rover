@@ -6,9 +6,9 @@ import plateau.RectMarsPlateau;
 public class RectPlateauRover extends Rover{
 
     // check for other rover
-    private int xPosition;
-    private int yPosition;
-    private String roverID;
+    private static int xPosition;
+    private static int yPosition;
+    private final String roverID;
 
     public enum Orientation {NORTH, EAST, SOUTH, WEST};
     private Orientation orientation;
@@ -17,8 +17,8 @@ public class RectPlateauRover extends Rover{
     public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation) {
         // Orientation orientation = rover.Rover.Orientation.WEST;
         super();
-        this.xPosition = xOrigin;
-        this.yPosition = yOrigin;
+        xPosition = xOrigin;
+        yPosition = yOrigin;
         this.orientation = startOrientation;
         this.roverID = RectMarsPlateau.initRoverPosition(xOrigin, yOrigin);
 
@@ -42,9 +42,15 @@ public class RectPlateauRover extends Rover{
         Plateau.updateRoverPosition(roverID, checkPosition());
     }
 
-    private static  void moveForward(Orientation orientation) {
+    private static void moveForward(Orientation orientation) {
         if (orientation.equals(Orientation.NORTH)) {
-
+            xPosition += 1;
+        } else if (orientation.equals(Orientation.EAST)) {
+            yPosition += 1;
+        } else if (orientation.equals(Orientation.SOUTH)) {
+            xPosition -= 1;
+        } else if (orientation.equals(Orientation.WEST)) {
+            yPosition -= 1;
         }
 
         // check if other rovers are in the way
@@ -52,7 +58,7 @@ public class RectPlateauRover extends Rover{
 
     }
 
-    private void changeOrientation(char reOrientation) {
+    private void changeOrientation(char instruction) {
 
     }
 
