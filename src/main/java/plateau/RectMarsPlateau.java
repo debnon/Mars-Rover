@@ -11,8 +11,6 @@ public class RectMarsPlateau extends Plateau {
         this.ySize = yLimit;
     }
 
-
-
     public int[] checkPlateauLimits() {
         int[] maxCoOrdinates = new int[2];
         maxCoOrdinates[0] = xSize;

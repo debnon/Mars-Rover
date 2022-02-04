@@ -1,5 +1,7 @@
 package plateau;
 
+import java.util.HashMap;
+
 public interface RoverInformation {
 
     static void storeRoverPosition(int xOrigin, int yOrigin) {
@@ -9,5 +11,5 @@ public interface RoverInformation {
     static void updateRoverPosition(Object[] roverPosition) {
 
     }
-    void checkRoverPositions();
+    HashMap<String, Object[]> checkRoverPositions();
 }

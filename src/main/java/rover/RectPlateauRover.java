@@ -86,7 +86,6 @@ public class RectPlateauRover extends Rover{
                 orientation = Orientation.NORTH;
             }
         }
-
     }
 
     public Object[] checkPosition() {
