@@ -27,18 +27,18 @@ public class RectPlateauRover extends Rover{
     public void changePosition(String desiredPosition) {
 
         if (!desiredPosition.matches("[RLM]+")) {
-
+            throw new RuntimeException("One of those instructions is invalid! " +
+                    "Remember you can only use L (turn left), R (turn right), and M (move forward)");
         }
 
         for (char instruction : desiredPosition.toCharArray()) {
             if (instruction == 'R' || instruction == 'L') {
                 changeOrientation(instruction);
             } else if (instruction == 'M') {
-
-              moveForward(orientation);
+                moveForward(orientation);
             }
-
         }
+
         Plateau.updateRoverPosition(roverID, checkPosition());
     }
 
