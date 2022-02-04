@@ -1,4 +1,5 @@
 import org.junit.Test;
+import plateau.RectMarsPlateau;
 import rover.RectPlateauRover;
 
 import java.util.Arrays;
@@ -13,7 +14,9 @@ public class roverTest {
     public void checkRoverInitialization() {
 
         // arrange
-        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
         Object[] desiredRoverPosition = {0,0, RectPlateauRover.Orientation.WEST};
 
         // act
@@ -26,7 +29,9 @@ public class roverTest {
     @Test
     public void checkChangingRoverOrientationLeft() {
 
-        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
         Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.SOUTH};
 
         testRover.changePosition("L");
@@ -39,7 +44,9 @@ public class roverTest {
     @Test
     public void checkChangingRoverOrientationRight() {
 
-        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.WEST);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
         Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.NORTH};
 
         testRover.changePosition("R");
@@ -52,7 +59,9 @@ public class roverTest {
     @Test
     public void checkMovingRover() {
 
-        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.NORTH);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.NORTH, marsPlateau);
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.NORTH};
 
         testRover.changePosition("M");
@@ -65,7 +74,9 @@ public class roverTest {
     @Test
     public void checkChangingRoverPosition() {
 
-        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.NORTH);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.NORTH, marsPlateau);
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.EAST};
 
         testRover.changePosition("MR");
@@ -78,7 +89,9 @@ public class roverTest {
     @Test(expected = RuntimeException.class)
     public void checkChangingRoverPositionWithInvalidCommands() {
 
-        RectPlateauRover testRover = new RectPlateauRover(0,0, RectPlateauRover.Orientation.NORTH);
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
         String correctMessage = "One of those instructions is invalid! " +
                 "Remember you can only use L (turn left), R (turn right), and M (move forward";
 

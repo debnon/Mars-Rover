@@ -4,12 +4,14 @@ import java.util.HashMap;
 
 public interface RoverInformation {
 
-    static void storeRoverPosition(int xOrigin, int yOrigin) {
-
+    static String initRoverPosition(Object[] roverPosition){
+        return "";
     }
+
 
     static void updateRoverPosition(Object[] roverPosition) {
 
     }
+
     HashMap<String, Object[]> checkRoverPositions();
 }

@@ -9,22 +9,24 @@ public class RectPlateauRover extends Rover{
     private static int xPosition;
     private static int yPosition;
     private final String roverID;
+    private final RectMarsPlateau plateau;
 
     public enum Orientation {NORTH, EAST, SOUTH, WEST};
     private Orientation orientation;
 
 
-    public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation) {
+    public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation, RectMarsPlateau plateau) {
 
         super();
         xPosition = xOrigin;
         yPosition = yOrigin;
         this.orientation = startOrientation;
+        this.plateau = plateau;
 
         // an array is used to store the rover's position to allow abstraction from
         // x and y coordinates in the abstract plateau class.
         Object[] roverPosition = {xPosition, yPosition, orientation};
-        this.roverID = RectMarsPlateau.initRoverPosition(roverPosition);
+        this.roverID = plateau.initRoverPosition(roverPosition);
 
     }
 
@@ -43,7 +45,7 @@ public class RectPlateauRover extends Rover{
             }
         }
 
-        Plateau.updateRoverPosition(roverID, checkPosition());
+        plateau.updateRoverPosition(roverID, checkPosition());
     }
 
     private static void moveForward(Orientation orientation) {

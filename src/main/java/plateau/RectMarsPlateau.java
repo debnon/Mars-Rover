@@ -1,5 +1,7 @@
 package plateau;
 
+import java.util.UUID;
+
 public class RectMarsPlateau extends Plateau {
 
     private final int xSize;
