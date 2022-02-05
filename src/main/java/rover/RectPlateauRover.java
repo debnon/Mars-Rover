@@ -56,14 +56,14 @@ public class RectPlateauRover extends Rover{
         // iterates through string of instructions, moving or re-orientating rover for each
         // if a space is already occupied, calculated by querying the arrays above, the loop terminates
 
-        boolean validMoveCheck = true;
+        boolean validMoveCheck;
         for (char instruction : desiredPosition.toCharArray()) {
             if (instruction == 'R' || instruction == 'L') {
                 changeOrientation(instruction);
             } else if (instruction == 'M') {
-                validMoveCheck = moveForward(orientation);
+                validMoveCheck = moveForward(orientation, xPositionsOccupied, yPositionsOccupied);
                 if (!validMoveCheck) {
-                    System.out.println("The ");
+                    System.out.println("The " + desiredPosition);
                     break;
                 }
             }
@@ -72,26 +72,43 @@ public class RectPlateauRover extends Rover{
         plateau.updateRoverPosition(roverID, checkPosition());
     }
 
-    private static boolean moveForward(Orientation orientation) {
+    private static boolean moveForward(Orientation orientation,
+                                       ArrayList<Integer> xOccupied, ArrayList<Integer> yOccupied) {
 
         // each instruction's effect is determined by the rover's current orientation
         // additionally it is checked that the instruction won't exit the plateau or hit another rover
+
         if (orientation.equals(Orientation.NORTH)) {
-            if (yPosition < plateau.checkPlateauLimits()[1]) && {yPosition + 1
+            System.out.println(yPosition);
+            System.out.println(yOccupied);
+            System.out.println(!yOccupied.contains(yPosition + 1));
+            if (yPosition < plateau.checkPlateauLimits()[1] && !yOccupied.contains(yPosition + 1)) {
                 yPosition += 1;
             } else {
                 return false;
             }
+
         } else if (orientation.equals(Orientation.EAST)) {
-            xPosition += 1;
+            if (xPosition < plateau.checkPlateauLimits()[0] && !xOccupied.contains(xPosition + 1)) {
+                xPosition += 1;
+            } else {
+                return false;
+            }
+
         } else if (orientation.equals(Orientation.SOUTH)) {
-            yPosition -= 1;
+            if (yPosition > 0 && !yOccupied.contains(yPosition - 1)) {
+                yPosition -= 1;
+            } else {
+                return false;
+            }
         } else if (orientation.equals(Orientation.WEST)) {
-            xPosition -= 1;
+            if (xPosition > 0 && !yOccupied.contains(xPosition - 1)) {
+                xPosition -= 1;
+            } else {
+                return false;
+            }
         }
 
-        // check if other rovers are in the way
-        // how to handle long input?
         return true;
     }
 

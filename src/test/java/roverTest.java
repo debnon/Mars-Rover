@@ -86,6 +86,8 @@ public class roverTest {
 
     }
 
+
+
     @Test(expected = RuntimeException.class)
     public void checkChangingRoverPositionWithInvalidCommands() {
 

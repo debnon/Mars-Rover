@@ -22,6 +22,8 @@ public class plateauTest {
         // assert
         assertEquals(Arrays.toString(desiredSize), Arrays.toString(actualSize));
     }
+
+
 //
 //    @Test
 //    public void testCheckRoverPositions() {
