@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public abstract class Plateau implements RoverInformation, PlateauInformation {
 
-    public static HashMap<String, Object[]> roverList = new HashMap<>();;
+    public static HashMap<String, Object[]> roverList = new HashMap<>();
 
     public Plateau() {
         // HashMap<String, Object[]> roverList = new HashMap<>();
