@@ -5,14 +5,15 @@ import java.util.UUID;
 
 public abstract class Plateau implements RoverInformation, PlateauInformation {
 
-    public static HashMap<String, Object[]> roverList = new HashMap<>();
+    public HashMap<String, Object[]> roverList;
 
     public Plateau() {
-        // HashMap<String, Object[]> roverList = new HashMap<>();
+        roverList = new HashMap<String,Object[]>();
+
 
     }
 
-    public static String initRoverPosition(Object[] roverPosition) {
+    public String initRoverPosition(Object[] roverPosition) {
 
         /*
         takes information about a rover instance, assigns it an ID,
@@ -22,12 +23,13 @@ public abstract class Plateau implements RoverInformation, PlateauInformation {
         */
 
         String roverID = UUID.randomUUID().toString();
+
         roverList.put(roverID, roverPosition);
 
         return roverID;
     }
 
-    public static void updateRoverPosition(String roverID, Object[] roverPosition) {
+    public void updateRoverPosition(String roverID, Object[] roverPosition) {
         roverList.put(roverID, roverPosition);
 
     }

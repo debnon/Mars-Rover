@@ -41,14 +41,14 @@ public class RectPlateauRover extends Rover{
         // when the moveForward method is called, it returns a boolean to indicate if a move is valid
         // and if the loop should continue to the next instruction
 
-        ArrayList<Integer> xPositionsOccupied = new ArrayList<Integer>();
+        ArrayList<Integer> xPositionsOccupied = new ArrayList<>();
 
         for (Object[] position : plateau.checkRoverPositions().values()) {
             xPositionsOccupied.add((Integer) position[0]);
         }
         System.out.println(xPositionsOccupied);
 
-        ArrayList<Integer> yPositionsOccupied = new ArrayList<Integer>();
+        ArrayList<Integer> yPositionsOccupied = new ArrayList<>();
         for (Object[] position : plateau.checkRoverPositions().values()) {
             yPositionsOccupied.add((Integer) position[1]);
         }
