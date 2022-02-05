@@ -104,4 +104,25 @@ public class roverTest {
 
     }
 
+    @Test
+    public void checkChangingRoverPositionIntoOccupiedArea() {
+
+        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+
+        RectPlateauRover testRover1 = new RectPlateauRover(2,2,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+
+        RectPlateauRover testRover2 = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+
+        Object[] desiredPosition = {1,2, RectPlateauRover.Orientation.EAST};
+
+
+        testRover2.changePosition("RMMMRRMLMM");
+        String actualRoverPosition = Arrays.toString(testRover2.checkPosition());
+
+        assertEquals(Arrays.toString(desiredPosition), actualRoverPosition);
+
+    }
+
 }
