@@ -39,26 +39,15 @@ public class RectPlateauRover extends Rover{
                     "Remember you can only use L (turn left), R (turn right), and M (move forward)");
         }
 
-        // when the moveForward method is called, it returns a boolean to indicate if a move is valid
-        // and if the loop should continue to the next instruction
-
         ArrayList<String> positionsOccupied = new ArrayList<>();
 
         for (Object[] position : plateau.checkRoverPositions().values()) {
             String positions = Arrays.toString(position).substring(1,5);
-//            positions[0] = (int) position[0];
-//            positions[1] = (int) position[1];
             positionsOccupied.add(positions);
         }
-        System.out.println(positionsOccupied);
-
-//        ArrayList<Integer> yPositionsOccupied = new ArrayList<>();
-//        for (Object[] position : plateau.checkRoverPositions().values()) {
-//            yPositionsOccupied.add((Integer) position[1]);
-//        }
 
         // iterates through string of instructions, moving or re-orientating rover for each
-        // if a space is already occupied, calculated by querying the arrays above, the loop terminates
+        // if a space is already occupied, calculated by querying the array above, the loop terminates
 
         boolean validMoveCheck;
         for (char instruction : desiredPosition.toCharArray()) {
@@ -82,9 +71,6 @@ public class RectPlateauRover extends Rover{
         // additionally it is checked that the instruction won't exit the plateau or hit another rover
 
         if (orientation.equals(Orientation.NORTH)) {
-
-            System.out.println("Positions" + posOccupied);
-            System.out.println(!posOccupied.contains(String.valueOf(xPosition) + " " + String.valueOf(yPosition + 1)));
             if (yPosition < plateau.checkPlateauLimits()[1]
                     && !posOccupied.contains(String.valueOf(xPosition) + ", " + String.valueOf(yPosition + 1))) {
                 yPosition += 1;
@@ -107,6 +93,7 @@ public class RectPlateauRover extends Rover{
             } else {
                 return false;
             }
+
         } else if (orientation.equals(Orientation.WEST)) {
             if (xPosition > 0 &&
                     !posOccupied.contains(String.valueOf(xPosition - 1) + ", " + String.valueOf(yPosition))) {
