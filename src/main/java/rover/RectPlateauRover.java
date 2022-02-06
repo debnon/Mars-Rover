@@ -25,8 +25,7 @@ public class RectPlateauRover extends Rover{
         this.orientation = startOrientation;
         plateau = marsPlateau;
 
-        // an array is used to store the rover's position to allow abstraction from
-        // x and y coordinates in the abstract plateau class.
+        // an array is used to store the rover's position to allow abstraction from x and y coordinates
 
         Object[] roverPosition = {xPosition, yPosition, orientation};
         this.roverID = plateau.initRoverPosition(roverPosition);
@@ -38,14 +37,7 @@ public class RectPlateauRover extends Rover{
             throw new RuntimeException("One of those instructions is invalid! " +
                     "Remember you can only use L (turn left), R (turn right), and M (move forward)");
         }
-
-        ArrayList<String> positionsOccupied = new ArrayList<>();
-
-        for (Object[] position : plateau.checkRoverPositions().values()) {
-            String positions = Arrays.toString(position).substring(1,5);
-            positionsOccupied.add(positions);
-        }
-
+        
         // iterates through string of instructions, moving or re-orientating rover for each
         // if a space is already occupied, calculated by querying the array above, the loop terminates
 
@@ -54,7 +46,7 @@ public class RectPlateauRover extends Rover{
             if (instruction == 'R' || instruction == 'L') {
                 changeOrientation(instruction);
             } else if (instruction == 'M') {
-                validMoveCheck = moveForward(orientation, positionsOccupied);
+                validMoveCheck = moveForward(orientation);
                 if (!validMoveCheck) {
                     System.out.println("The " + desiredPosition);
                     break;
@@ -65,14 +57,14 @@ public class RectPlateauRover extends Rover{
         plateau.updateRoverPosition(roverID, checkPosition());
     }
 
-    private boolean moveForward(Orientation orientation, ArrayList<String> posOccupied) {
+    private boolean moveForward(Orientation orientation) {
 
         // each instruction's effect is determined by the rover's current orientation
         // additionally it is checked that the instruction won't exit the plateau or hit another rover
 
         if (orientation.equals(Orientation.NORTH)) {
-            if (yPosition < plateau.checkPlateauLimits()[1]
-                    && !posOccupied.contains(String.valueOf(xPosition) + ", " + String.valueOf(yPosition + 1))) {
+            if (yPosition < plateau.checkPlateauLimits()[1] &&
+                    plateau.checkOccupiedPositions(xPosition, yPosition + 1)) {
                 yPosition += 1;
             } else {
                 return false;
@@ -80,7 +72,7 @@ public class RectPlateauRover extends Rover{
 
         } else if (orientation.equals(Orientation.EAST)) {
             if (xPosition < plateau.checkPlateauLimits()[0] &&
-                    !posOccupied.contains(String.valueOf(xPosition + 1) + ", " + String.valueOf(yPosition))) {
+                    plateau.checkOccupiedPositions(xPosition + 1, yPosition)) {
                 xPosition += 1;
             } else {
                 return false;
@@ -88,7 +80,7 @@ public class RectPlateauRover extends Rover{
 
         } else if (orientation.equals(Orientation.SOUTH)) {
             if (yPosition > 0 &&
-                    !posOccupied.contains(String.valueOf(xPosition) + ", " + String.valueOf(yPosition - 1))) {
+                    plateau.checkOccupiedPositions(xPosition, yPosition - 1)) {
                 yPosition -= 1;
             } else {
                 return false;
@@ -96,7 +88,7 @@ public class RectPlateauRover extends Rover{
 
         } else if (orientation.equals(Orientation.WEST)) {
             if (xPosition > 0 &&
-                    !posOccupied.contains(String.valueOf(xPosition - 1) + ", " + String.valueOf(yPosition))) {
+                    plateau.checkOccupiedPositions(xPosition - 1, yPosition)) {
                 xPosition -= 1;
             } else {
                 return false;
