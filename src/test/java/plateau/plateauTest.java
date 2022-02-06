@@ -1,3 +1,5 @@
+package plateau;
+
 import org.junit.Test;
 import plateau.RectPlateau;
 

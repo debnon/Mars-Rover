@@ -1,4 +1,10 @@
-import org.junit.Test;
+package rover;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import plateau.RectPlateau;
 import rover.RectPlateauRover;
 
@@ -10,6 +16,16 @@ public class roverTest {
 
 
     // how to do parameterized tests for these first four, then another for the next, etc.?
+
+    @BeforeEach
+    public void init() {
+        System.out.println("Beforeach");
+        RectPlateau marsPlateau = new RectPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+
+    }
+
     @Test
     public void checkRoverInitialization() {
 
@@ -87,20 +103,22 @@ public class roverTest {
     }
 
 
-
-    @Test(expected = RuntimeException.class)
+    @Test
     public void checkChangingRoverPositionWithInvalidCommands() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            RectPlateau marsPlateau = new RectPlateau(5,5);
+            RectPlateauRover testRover = new RectPlateauRover(0,0,
+                    RectPlateauRover.Orientation.WEST, marsPlateau);
+
+            testRover.changePosition("MRB");
+
+        });
+
         String correctMessage = "One of those instructions is invalid! " +
-                "Remember you can only use L (turn left), R (turn right), and M (move forward";
+                "Remember you can only use L (turn left), R (turn right), and M (move forward)";
 
-        testRover.changePosition("MRB");
-        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
-
-        assertEquals(actualRoverPosition, correctMessage);
+        Assertions.assertEquals(correctMessage, exception.getMessage());
 
     }
 
@@ -125,27 +143,38 @@ public class roverTest {
 
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void checkSpawningRoverOnOccupiedPosition() {
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            RectPlateau marsPlateau = new RectPlateau(5,5);
+            RectPlateauRover testRover = new RectPlateauRover(0,0,
+                    RectPlateauRover.Orientation.WEST, marsPlateau);
+            RectPlateauRover testRover1 = new RectPlateauRover(0,0,
+                    RectPlateauRover.Orientation.WEST, marsPlateau);
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
-        RectPlateauRover testRover1 = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
+        });
+
+        Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
+
 
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void checkSpawningRoverOutOfBoundsXAxis() {
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            RectPlateau marsPlateau = new RectPlateau(5,5);
+            RectPlateauRover testRover = new RectPlateauRover(6,4,
+                    RectPlateauRover.Orientation.WEST, marsPlateau);
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(6,5,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
+        });
+
+        Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
+
+
 
     }
 
-    @Test(expected = RuntimeException.class)
+//    @Test(expected = RuntimeException.class)
     public void checkSpawningRoverOutOfBoundsYAxis() {
 
         RectPlateau marsPlateau = new RectPlateau(5,5);
@@ -154,7 +183,7 @@ public class roverTest {
 
     }
 
-    @Test(expected = RuntimeException.class)
+//    @Test(expected = RuntimeException.class)
     public void checkSpawningRoverOutOfBoundsBothAxis() {
 
         RectPlateau marsPlateau = new RectPlateau(5,5);
