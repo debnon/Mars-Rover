@@ -137,10 +137,28 @@ public class roverTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void checkSpawningRoverOutOfBounds() {
+    public void checkSpawningRoverOutOfBoundsXAxis() {
 
         RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(6,5,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void checkSpawningRoverOutOfBoundsYAxis() {
+
+        RectPlateau marsPlateau = new RectPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(5,6,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void checkSpawningRoverOutOfBoundsBothAxis() {
+
+        RectPlateau marsPlateau = new RectPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(6,6,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
 
     }
