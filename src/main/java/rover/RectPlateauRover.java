@@ -1,23 +1,30 @@
 package rover;
 
-import plateau.Plateau;
-import plateau.RectMarsPlateau;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import plateau.RectPlateau;
 
 public class RectPlateauRover extends Rover{
 
-    // check for other rover
     private static int xPosition;
     private static int yPosition;
     private final String roverID;
-    private static RectMarsPlateau plateau;
+    private static RectPlateau plateau;
 
-    public enum Orientation {NORTH, EAST, SOUTH, WEST};
+    public enum Orientation {
+        NORTH, EAST, SOUTH, WEST;
+
+        private static final Orientation[] cardinals = values();
+
+        public Orientation right() {
+          return cardinals[(this.ordinal() + 1) % cardinals.length];
+        }
+
+        public Orientation left() {
+          return cardinals[(this.ordinal() - 1) % cardinals.length];
+        }
+    }
     private Orientation orientation;
 
-    public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation, RectMarsPlateau marsPlateau) {
+    public RectPlateauRover(int xOrigin, int yOrigin, Orientation startOrientation, RectPlateau marsPlateau) {
 
         super();
         xPosition = xOrigin;
@@ -26,7 +33,6 @@ public class RectPlateauRover extends Rover{
         plateau = marsPlateau;
 
         // an array is used to store the rover's position to allow abstraction from x and y coordinates
-
         Object[] roverPosition = {xPosition, yPosition, orientation};
         this.roverID = plateau.initRoverPosition(roverPosition);
     }
@@ -37,7 +43,7 @@ public class RectPlateauRover extends Rover{
             throw new RuntimeException("One of those instructions is invalid! " +
                     "Remember you can only use L (turn left), R (turn right), and M (move forward)");
         }
-        
+
         // iterates through string of instructions, moving or re-orientating rover for each
         // if a space is already occupied, calculated by querying the array above, the loop terminates
 
@@ -79,16 +85,14 @@ public class RectPlateauRover extends Rover{
             }
 
         } else if (orientation.equals(Orientation.SOUTH)) {
-            if (yPosition > 0 &&
-                    plateau.checkOccupiedPositions(xPosition, yPosition - 1)) {
+            if (yPosition > 0 && plateau.checkOccupiedPositions(xPosition, yPosition - 1)) {
                 yPosition -= 1;
             } else {
                 return false;
             }
 
         } else if (orientation.equals(Orientation.WEST)) {
-            if (xPosition > 0 &&
-                    plateau.checkOccupiedPositions(xPosition - 1, yPosition)) {
+            if (xPosition > 0 && plateau.checkOccupiedPositions(xPosition - 1, yPosition)) {
                 xPosition -= 1;
             } else {
                 return false;
@@ -101,26 +105,9 @@ public class RectPlateauRover extends Rover{
     private void changeOrientation(char instruction) {
 
         if (instruction == 'L') {
-            if (orientation.equals(Orientation.NORTH)) {
-                orientation = Orientation.WEST;
-            } else if (orientation.equals(Orientation.EAST)) {
-                orientation = Orientation.NORTH;
-            } else if (orientation.equals(Orientation.SOUTH)) {
-                orientation = Orientation.EAST;
-            } else if (orientation.equals(Orientation.WEST)) {
-                orientation = Orientation.SOUTH;
-            }
-
+          orientation = orientation.left();
         } else if (instruction == 'R') {
-            if (orientation.equals(Orientation.NORTH)) {
-                orientation = Orientation.EAST;
-            } else if (orientation.equals(Orientation.EAST)) {
-                orientation = Orientation.SOUTH;
-            } else if (orientation.equals(Orientation.SOUTH)) {
-                orientation = Orientation.WEST;
-            } else if (orientation.equals(Orientation.WEST)) {
-                orientation = Orientation.NORTH;
-            }
+            orientation = orientation.right();
         }
     }
 

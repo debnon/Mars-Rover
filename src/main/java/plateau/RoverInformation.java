@@ -14,4 +14,5 @@ public interface RoverInformation {
     }
 
     HashMap<String, Object[]> checkRoverPositions();
+    boolean checkOccupiedPositions(int xPosition, int yPosition);
 }

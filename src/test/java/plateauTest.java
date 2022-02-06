@@ -1,9 +1,7 @@
 import org.junit.Test;
-import plateau.RectMarsPlateau;
-import rover.RectPlateauRover;
+import plateau.RectPlateau;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +11,7 @@ public class plateauTest {
     public void checkPlateauInitialization() {
 
         // arrange
-        RectMarsPlateau marsPlateau2 = new RectMarsPlateau(1, 1);
+        RectPlateau marsPlateau2 = new RectPlateau(1, 1);
         int[] desiredSize = {1,1};
 
         // act

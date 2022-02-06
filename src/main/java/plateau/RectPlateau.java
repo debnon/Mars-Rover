@@ -2,15 +2,13 @@ package plateau;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.UUID;
 
-public class RectMarsPlateau extends Plateau {
-
+public class RectPlateau extends Plateau {
 
     private final int xSize;
     private final int ySize;
 
-    public RectMarsPlateau(int xLimit, int yLimit) {
+    public RectPlateau(int xLimit, int yLimit) {
         super();
         this.xSize = xLimit;
         this.ySize = yLimit;

@@ -1,5 +1,5 @@
 import org.junit.Test;
-import plateau.RectMarsPlateau;
+import plateau.RectPlateau;
 import rover.RectPlateauRover;
 
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class roverTest {
     public void checkRoverInitialization() {
 
         // arrange
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(0,0,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
         Object[] desiredRoverPosition = {0,0, RectPlateauRover.Orientation.WEST};
@@ -29,7 +29,7 @@ public class roverTest {
     @Test
     public void checkChangingRoverOrientationLeft() {
 
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(0,0,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
         Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.SOUTH};
@@ -44,7 +44,7 @@ public class roverTest {
     @Test
     public void checkChangingRoverOrientationRight() {
 
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(0,0,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
         Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.NORTH};
@@ -59,7 +59,7 @@ public class roverTest {
     @Test
     public void checkMovingRover() {
 
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(0,0,
                 RectPlateauRover.Orientation.NORTH, marsPlateau);
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.NORTH};
@@ -74,7 +74,7 @@ public class roverTest {
     @Test
     public void checkChangingRoverPosition() {
 
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(0,0,
                 RectPlateauRover.Orientation.NORTH, marsPlateau);
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.EAST};
@@ -91,7 +91,7 @@ public class roverTest {
     @Test(expected = RuntimeException.class)
     public void checkChangingRoverPositionWithInvalidCommands() {
 
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
         RectPlateauRover testRover = new RectPlateauRover(0,0,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
         String correctMessage = "One of those instructions is invalid! " +
@@ -107,7 +107,7 @@ public class roverTest {
     @Test
     public void checkChangingRoverPositionIntoOccupiedArea() {
 
-        RectMarsPlateau marsPlateau = new RectMarsPlateau(5,5);
+        RectPlateau marsPlateau = new RectPlateau(5,5);
 
         RectPlateauRover testRover1 = new RectPlateauRover(2,2,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
