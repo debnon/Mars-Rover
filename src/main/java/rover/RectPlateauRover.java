@@ -2,6 +2,8 @@ package rover;
 
 import plateau.RectPlateau;
 
+import java.util.Arrays;
+
 public class RectPlateauRover extends Rover{
 
     private static int xPosition;
@@ -31,6 +33,13 @@ public class RectPlateauRover extends Rover{
         yPosition = yOrigin;
         this.orientation = startOrientation;
         plateau = marsPlateau;
+
+        if (!plateau.checkOccupiedPositions(xPosition, yPosition)) {
+            throw new RuntimeException("That position on the plateau is already occupied.");
+        } else if (0 > yPosition || yPosition > plateau.checkPlateauLimits()[1]
+                || 0 > xPosition || yPosition > plateau.checkPlateauLimits()[0]) {
+            throw new RuntimeException("That position is outside of the plateau's bounds.");
+        }
 
         // an array is used to store the rover's position to allow abstraction from x and y coordinates
         Object[] roverPosition = {xPosition, yPosition, orientation};
@@ -105,7 +114,7 @@ public class RectPlateauRover extends Rover{
     private void changeOrientation(char instruction) {
 
         if (instruction == 'L') {
-          orientation = orientation.left();
+            orientation = orientation.left();
         } else if (instruction == 'R') {
             orientation = orientation.right();
         }

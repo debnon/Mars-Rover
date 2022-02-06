@@ -125,4 +125,23 @@ public class roverTest {
 
     }
 
+    @Test
+    public void checkSpawningRoverOnOccupiedPosition() {
+
+        RectPlateau marsPlateau = new RectPlateau(5,5);
+        RectPlateauRover testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+        RectPlateauRover testRover1 = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.WEST, marsPlateau);
+        String correctMessage = "One of those instructions is invalid! " +
+                "Remember you can only use L (turn left), R (turn right), and M (move forward";
+
+//        testRover.changePosition("MRB");
+//        testRover1.changePosition("MRB");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        assertEquals(actualRoverPosition, correctMessage);
+
+    }
+
 }

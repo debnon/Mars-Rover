@@ -30,6 +30,10 @@ public class RectPlateau extends Plateau {
             positionsOccupied.add(positions);
         }
 
+//        System.out.println(positionsOccupied);
+//        System.out.println(String.valueOf(xPosition) + ", " + String.valueOf(yPosition));
+//        System.out.println(!positionsOccupied.contains(String.valueOf(xPosition) + ", " + String.valueOf(yPosition)));
+
         return !positionsOccupied.contains(String.valueOf(xPosition) + ", " + String.valueOf(yPosition));
     }
 
