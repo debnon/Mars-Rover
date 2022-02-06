@@ -37,7 +37,7 @@ public class RectPlateauRover extends Rover{
         if (!plateau.checkOccupiedPositions(xPosition, yPosition)) {
             throw new RuntimeException("That position on the plateau is already occupied.");
         } else if (0 > yPosition || yPosition > plateau.checkPlateauLimits()[1]
-                || 0 > xPosition || yPosition > plateau.checkPlateauLimits()[0]) {
+                || 0 > xPosition || xPosition > plateau.checkPlateauLimits()[0]) {
             throw new RuntimeException("That position is outside of the plateau's bounds.");
         }
 
@@ -63,7 +63,8 @@ public class RectPlateauRover extends Rover{
             } else if (instruction == 'M') {
                 validMoveCheck = moveForward(orientation);
                 if (!validMoveCheck) {
-                    System.out.println("The " + desiredPosition);
+                    System.out.println("Completing the full instruction is impossible due to obstruction. " +
+                            "The rover is currently positioned at: " + Arrays.toString(checkPosition()));
                     break;
                 }
             }
