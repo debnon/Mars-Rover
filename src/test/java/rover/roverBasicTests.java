@@ -1,6 +1,8 @@
 package rover;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import plateau.RectPlateau;
@@ -10,56 +12,47 @@ import java.util.Arrays;
 
 public class roverBasicTests {
 
+    RectPlateauRover testRover;
+    RectPlateau marsPlateau;
 
-    // how to do parameterized tests for these first four, then another for the next, etc.?
+    @BeforeEach
+    public void init() {
 
-//    @BeforeEach
-//    public void init() {
-//        System.out.println("Beforeach");
-//        RectPlateau marsPlateau = new RectPlateau(5,5);
-//        RectPlateauRover testRover = new RectPlateauRover(0,0,
-//                RectPlateauRover.Orientation.WEST, marsPlateau);
-//
-//    }
+        marsPlateau = new RectPlateau(5,5);
+
+        testRover = new RectPlateauRover(0,0,
+                RectPlateauRover.Orientation.NORTH, marsPlateau);
+    }
 
     @Test
     public void checkRoverInitialization() {
 
         // arrange
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
-        Object[] desiredRoverPosition = {0,0, RectPlateauRover.Orientation.WEST};
+        Object[] desiredRoverPosition = {0,0, RectPlateauRover.Orientation.NORTH};
 
         // act
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
         // assert
-        Assertions.assertEquals(actualRoverPosition, Arrays.toString(desiredRoverPosition));
+        Assertions.assertEquals(Arrays.toString(desiredRoverPosition), actualRoverPosition);
     }
 
     @Test
     public void checkChangingRoverOrientationLeft() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
-        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.SOUTH};
+        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.WEST};
 
         testRover.changePosition("L");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
-        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+        Assertions.assertEquals(Arrays.toString(correctRoverPosition), actualRoverPosition);
 
     }
 
     @Test
     public void checkChangingRoverOrientationRight() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
-        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.NORTH};
+        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.EAST};
 
         testRover.changePosition("R");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
@@ -71,9 +64,6 @@ public class roverBasicTests {
     @Test
     public void checkMovingRover() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.NORTH, marsPlateau);
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.NORTH};
 
         testRover.changePosition("M");

@@ -17,11 +17,11 @@ public class RectPlateauRover extends Rover{
         private static final Orientation[] cardinals = values();
 
         public Orientation right() {
-          return cardinals[(this.ordinal() + 1) % cardinals.length];
+            return cardinals[(this.ordinal() + 1) % cardinals.length];
         }
 
         public Orientation left() {
-          return cardinals[(this.ordinal() - 1) % cardinals.length];
+            return cardinals[Math.floorMod(this.ordinal() - 1, cardinals.length) ];
         }
     }
     private Orientation orientation;
