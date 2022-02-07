@@ -5,22 +5,22 @@ import java.util.Arrays;
 
 public class RectPlateau extends Plateau {
 
-    private final int xSize;
-    private final int ySize;
+    private final int X_SIZE;
+    private final int Y_SIZE;
 
     public RectPlateau(int xLimit, int yLimit) {
         super();
         if (xLimit < 0 || yLimit < 0) {
             throw new RuntimeException("The plateau's size cannot be negative!");
         }
-        this.xSize = xLimit;
-        this.ySize = yLimit;
+        this.X_SIZE = xLimit;
+        this.Y_SIZE = yLimit;
     }
 
     public int[] checkPlateauLimits() {
         int[] maxCoOrdinates = new int[2];
-        maxCoOrdinates[0] = xSize;
-        maxCoOrdinates[1] = ySize;
+        maxCoOrdinates[0] = X_SIZE;
+        maxCoOrdinates[1] = Y_SIZE;
 
         return maxCoOrdinates;
     }

@@ -4,7 +4,7 @@ public interface RoverMovement {
 
     void changePosition(String desiredPosition);
 
-    private void changeOrientation(String desiredPosition) {
+    private void changeOrientation(char instruction) {
 
     }
 

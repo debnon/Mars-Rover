@@ -1,6 +1,6 @@
 package rover;
 
-public interface RoverPosition {
+public interface RoverStatus {
 
     Object[] checkPosition();
 }

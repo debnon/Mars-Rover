@@ -1,11 +1,9 @@
 package rover;
 
-public abstract class Rover implements RoverMovement, RoverPosition {
-
+public abstract class Rover implements RoverMovement, RoverStatus {
 
     public Rover() {
 
     }
-
 
 }

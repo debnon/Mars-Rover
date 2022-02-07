@@ -64,7 +64,6 @@ public class PlateauTest {
     @Test
     public void testCheckRoverPositions() {
 
-        // marsPlateau = new RectPlateau(5, 5);
         RectPlateauRover marsRover1 = new RectPlateauRover(1,1,
                 RectPlateauRover.Orientation.NORTH, marsPlateau);
         RectPlateauRover marsRover2 = new RectPlateauRover(3,2,
