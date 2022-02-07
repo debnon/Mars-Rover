@@ -10,6 +10,9 @@ public class RectPlateau extends Plateau {
 
     public RectPlateau(int xLimit, int yLimit) {
         super();
+        if (xLimit < 0 || yLimit < 0) {
+            throw new RuntimeException("The plateau's size cannot be negative!");
+        }
         this.xSize = xLimit;
         this.ySize = yLimit;
     }
