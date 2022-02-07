@@ -31,10 +31,30 @@ public class PlateauTest {
     }
 
     @Test
-    public void checkPlateauNegativeInitializationError() {
+    public void checkPlateauNegativeInitializationErrorX() {
 
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             marsPlateau = new RectPlateau(-1, 5);
+        });
+
+        Assertions.assertEquals("The plateau's size cannot be negative!", exception.getMessage());
+    }
+
+    @Test
+    public void checkPlateauNegativeInitializationErrorY() {
+
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            marsPlateau = new RectPlateau(5, -2);
+        });
+
+        Assertions.assertEquals("The plateau's size cannot be negative!", exception.getMessage());
+    }
+
+    @Test
+    public void checkPlateauNegativeInitializationErrorXAndY() {
+
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            marsPlateau = new RectPlateau(-3, -1);
         });
 
         Assertions.assertEquals("The plateau's size cannot be negative!", exception.getMessage());
