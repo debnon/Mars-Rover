@@ -142,9 +142,6 @@ public class roverBasicTests {
     public void checkSpawningRoverOnOccupiedPosition() {
 
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
-            RectPlateau marsPlateau = new RectPlateau(5,5);
-            RectPlateauRover testRover = new RectPlateauRover(0,0,
-                    RectPlateauRover.Orientation.WEST, marsPlateau);
             RectPlateauRover testRover1 = new RectPlateauRover(0,0,
                     RectPlateauRover.Orientation.WEST, marsPlateau);
         });
