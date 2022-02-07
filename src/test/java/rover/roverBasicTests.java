@@ -1,30 +1,26 @@
 package rover;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import plateau.RectPlateau;
-import rover.RectPlateauRover;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
 
-public class roverTest {
+public class roverBasicTests {
 
 
     // how to do parameterized tests for these first four, then another for the next, etc.?
 
-    @BeforeEach
-    public void init() {
-        System.out.println("Beforeach");
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
-
-    }
+//    @BeforeEach
+//    public void init() {
+//        System.out.println("Beforeach");
+//        RectPlateau marsPlateau = new RectPlateau(5,5);
+//        RectPlateauRover testRover = new RectPlateauRover(0,0,
+//                RectPlateauRover.Orientation.WEST, marsPlateau);
+//
+//    }
 
     @Test
     public void checkRoverInitialization() {
@@ -39,7 +35,7 @@ public class roverTest {
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
         // assert
-        assertEquals(actualRoverPosition, Arrays.toString(desiredRoverPosition));
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(desiredRoverPosition));
     }
 
     @Test
@@ -53,7 +49,7 @@ public class roverTest {
         testRover.changePosition("L");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
-        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
 
     }
 
@@ -68,7 +64,7 @@ public class roverTest {
         testRover.changePosition("R");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
-        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
 
     }
 
@@ -83,7 +79,7 @@ public class roverTest {
         testRover.changePosition("M");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
-        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
 
     }
 
@@ -98,7 +94,7 @@ public class roverTest {
         testRover.changePosition("MR");
         String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
-        assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
 
     }
 
@@ -112,7 +108,6 @@ public class roverTest {
                     RectPlateauRover.Orientation.WEST, marsPlateau);
 
             testRover.changePosition("MRB");
-
         });
 
         String correctMessage = "One of those instructions is invalid! " +
@@ -139,7 +134,7 @@ public class roverTest {
         testRover2.changePosition("RMMMRRMLMM");
         String actualRoverPosition = Arrays.toString(testRover2.checkPosition());
 
-        assertEquals(Arrays.toString(desiredPosition), actualRoverPosition);
+        Assertions.assertEquals(Arrays.toString(desiredPosition), actualRoverPosition);
 
     }
 
@@ -154,7 +149,7 @@ public class roverTest {
 
         });
 
-        Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
+        Assertions.assertEquals("That position on the plateau is already occupied.", exception.getMessage());
 
 
     }
@@ -169,9 +164,6 @@ public class roverTest {
         });
 
         Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
-
-
-
     }
 
 //    @Test(expected = RuntimeException.class)

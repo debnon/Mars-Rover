@@ -1,13 +1,11 @@
 package plateau;
 
-import org.junit.Test;
-import plateau.RectPlateau;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-
-public class plateauTest {
+public class PlateauTest {
 
     @Test
     public void checkPlateauInitialization() {
@@ -20,7 +18,7 @@ public class plateauTest {
         int[] actualSize = marsPlateau2.checkPlateauLimits();
 
         // assert
-        assertEquals(Arrays.toString(desiredSize), Arrays.toString(actualSize));
+        Assertions.assertEquals(Arrays.toString(desiredSize), Arrays.toString(actualSize));
     }
 
 
