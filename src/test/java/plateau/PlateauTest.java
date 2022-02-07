@@ -35,19 +35,20 @@ public class PlateauTest {
 
         Object[] array1 = {1,1, "NORTH"};
         Object[] array2 = {3,2, "EAST"};
-        Object[][] desiredRoverList = {array1, array2};
 
         HashMap<String, Object[]> actualRoverMap = marsPlateau.checkRoverPositions();
-        Object[][] actualRoverList = new Object[2][];
+        String[] actualRoverList = new String[2];
         int counter = 0;
         for (Object[] position : actualRoverMap.values()) {
-            actualRoverList[counter] = position;
+            System.out.println(Arrays.toString(position));
+            actualRoverList[counter] = Arrays.toString(position);
             counter += 1;
         }
 
-        // assert
-        Assertions.assertEquals(Arrays.toString(desiredRoverList[0]), Arrays.toString(actualRoverList[0]));
-        Assertions.assertEquals(Arrays.toString(desiredRoverList[1]), Arrays.toString(actualRoverList[1]));
+        boolean expectedResult = Arrays.asList(actualRoverList).contains(Arrays.toString(array1)) &&
+                Arrays.asList(actualRoverList).contains(Arrays.toString(array2));
+
+        Assertions.assertTrue(expectedResult);
     }
 
 }
