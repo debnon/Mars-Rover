@@ -166,22 +166,28 @@ public class roverBasicTests {
         Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
     }
 
-//    @Test(expected = RuntimeException.class)
+    @Test
     public void checkSpawningRoverOutOfBoundsYAxis() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(5,6,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            RectPlateau marsPlateau = new RectPlateau(5,5);
+            RectPlateauRover testRover = new RectPlateauRover(5,6,
+                    RectPlateauRover.Orientation.WEST, marsPlateau);
+        });
 
+        Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
     }
 
-//    @Test(expected = RuntimeException.class)
+    @Test
     public void checkSpawningRoverOutOfBoundsBothAxis() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(6,6,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
+            RectPlateau marsPlateau = new RectPlateau(5,5);
+            RectPlateauRover testRover = new RectPlateauRover(6,6,
+                    RectPlateauRover.Orientation.WEST, marsPlateau);
+        });
 
+        Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
     }
 
 }
