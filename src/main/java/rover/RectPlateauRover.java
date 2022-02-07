@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class RectPlateauRover extends Rover{
 
-    private static int xPosition;
-    private static int yPosition;
+    private int xPosition;
+    private int yPosition;
     private final String roverID;
-    private static RectPlateau plateau;
+    private final RectPlateau plateau;
 
     public enum Orientation {
         NORTH, EAST, SOUTH, WEST;
@@ -21,7 +21,7 @@ public class RectPlateauRover extends Rover{
         }
 
         public Orientation left() {
-            return cardinals[Math.floorMod(this.ordinal() - 1, cardinals.length) ];
+            return cardinals[Math.floorMod(this.ordinal() - 1, cardinals.length)];
         }
     }
     private Orientation orientation;

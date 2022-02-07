@@ -62,6 +62,30 @@ public class roverBasicTests {
     }
 
     @Test
+    public void checkChangingRoverOrientationLeftThenRight() {
+
+        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.EAST};
+
+        testRover.changePosition("LRR");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+
+    }
+
+    @Test
+    public void checkChangingRoverOrientationRightThenLeft() {
+
+        Object[] correctRoverPosition = {0,0, RectPlateauRover.Orientation.SOUTH};
+
+        testRover.changePosition("RRRRRLLL");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
+
+        Assertions.assertEquals(actualRoverPosition, Arrays.toString(correctRoverPosition));
+
+    }
+
+    @Test
     public void checkMovingRover() {
 
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.NORTH};
@@ -74,11 +98,8 @@ public class roverBasicTests {
     }
 
     @Test
-    public void checkChangingRoverPosition() {
+    public void checkMovingRoverThenChangingOrientation() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-        RectPlateauRover testRover = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.NORTH, marsPlateau);
         Object[] correctRoverPosition = {0,1, RectPlateauRover.Orientation.EAST};
 
         testRover.changePosition("MR");
@@ -93,10 +114,6 @@ public class roverBasicTests {
     public void checkChangingRoverPositionWithInvalidCommands() {
 
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
-            RectPlateau marsPlateau = new RectPlateau(5,5);
-            RectPlateauRover testRover = new RectPlateauRover(0,0,
-                    RectPlateauRover.Orientation.WEST, marsPlateau);
-
             testRover.changePosition("MRB");
         });
 
@@ -108,21 +125,16 @@ public class roverBasicTests {
     }
 
     @Test
-    public void checkChangingRoverPositionIntoOccupiedArea() {
+    public void checkChangingRoverPositionIntoOccupiedPosition() {
 
-        RectPlateau marsPlateau = new RectPlateau(5,5);
-
-        RectPlateauRover testRover1 = new RectPlateauRover(2,2,
+        RectPlateauRover testRover2 = new RectPlateauRover(2,2,
                 RectPlateauRover.Orientation.WEST, marsPlateau);
 
-        RectPlateauRover testRover2 = new RectPlateauRover(0,0,
-                RectPlateauRover.Orientation.WEST, marsPlateau);
 
         Object[] desiredPosition = {1,2, RectPlateauRover.Orientation.EAST};
 
-
-        testRover2.changePosition("RMMMRRMLMM");
-        String actualRoverPosition = Arrays.toString(testRover2.checkPosition());
+        testRover.changePosition("MMMLLMLMMM");
+        String actualRoverPosition = Arrays.toString(testRover.checkPosition());
 
         Assertions.assertEquals(Arrays.toString(desiredPosition), actualRoverPosition);
 
