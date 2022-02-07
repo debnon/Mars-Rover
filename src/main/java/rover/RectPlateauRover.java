@@ -56,15 +56,16 @@ public class RectPlateauRover extends Rover{
         // iterates through string of instructions, moving or re-orientating rover for each
         // if a space is already occupied, calculated by querying the array above, the loop terminates
 
-        boolean validMoveCheck;
         for (char instruction : desiredPosition.toCharArray()) {
             if (instruction == 'R' || instruction == 'L') {
                 changeOrientation(instruction);
             } else if (instruction == 'M') {
-                validMoveCheck = moveForward(orientation);
-                if (!validMoveCheck) {
-                    System.out.println("Completing the full instruction is impossible due to obstruction. " +
-                            "The rover is currently positioned at: " + Arrays.toString(checkPosition()));
+
+                try {
+                    moveForward(orientation);
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage() +
+                            " The rover is currently positioned at: " + Arrays.toString(checkPosition()));
                     break;
                 }
             }
@@ -73,7 +74,7 @@ public class RectPlateauRover extends Rover{
         plateau.updateRoverPosition(roverID, checkPosition());
     }
 
-    private boolean moveForward(Orientation orientation) {
+    private void moveForward(Orientation orientation) {
 
         // each instruction's effect is determined by the rover's current orientation
         // additionally it is checked that the instruction won't exit the plateau or hit another rover
@@ -83,7 +84,7 @@ public class RectPlateauRover extends Rover{
                     plateau.checkOccupiedPositions(xPosition, yPosition + 1)) {
                 yPosition += 1;
             } else {
-                return false;
+                throw new RuntimeException("Completing the full instruction is impossible due to obstruction.");
             }
 
         } else if (orientation.equals(Orientation.EAST)) {
@@ -91,25 +92,23 @@ public class RectPlateauRover extends Rover{
                     plateau.checkOccupiedPositions(xPosition + 1, yPosition)) {
                 xPosition += 1;
             } else {
-                return false;
+                throw new RuntimeException("Completing the full instruction is impossible due to obstruction.");
             }
 
         } else if (orientation.equals(Orientation.SOUTH)) {
             if (yPosition > 0 && plateau.checkOccupiedPositions(xPosition, yPosition - 1)) {
                 yPosition -= 1;
             } else {
-                return false;
+                throw new RuntimeException("Completing the full instruction is impossible due to obstruction.");
             }
 
         } else if (orientation.equals(Orientation.WEST)) {
             if (xPosition > 0 && plateau.checkOccupiedPositions(xPosition - 1, yPosition)) {
                 xPosition -= 1;
             } else {
-                return false;
+                throw new RuntimeException("Completing the full instruction is impossible due to obstruction.");
             }
         }
-
-        return true;
     }
 
     private void changeOrientation(char instruction) {

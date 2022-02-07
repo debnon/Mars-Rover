@@ -51,4 +51,62 @@ public class PlateauTest {
         Assertions.assertTrue(expectedResult);
     }
 
+    @Test
+    public void testCheckRoverPositionsWithObstruction() {
+
+        RectPlateau marsPlateau = new RectPlateau(5, 5);
+        RectPlateauRover marsRover1 = new RectPlateauRover(3,3,
+                RectPlateauRover.Orientation.NORTH, marsPlateau);
+        RectPlateauRover marsRover2 = new RectPlateauRover(1,2,
+                RectPlateauRover.Orientation.EAST, marsPlateau);
+
+        Object[] array1 = {3,3, "NORTH"};
+        Object[] array2 = {3,2, "NORTH"};
+
+        marsRover2.changePosition("MMLMM");
+
+        HashMap<String, Object[]> actualRoverMap = marsPlateau.checkRoverPositions();
+        String[] actualRoverList = new String[2];
+        int counter = 0;
+        for (Object[] position : actualRoverMap.values()) {
+            System.out.println(Arrays.toString(position));
+            actualRoverList[counter] = Arrays.toString(position);
+            counter += 1;
+        }
+
+        boolean expectedResult = Arrays.asList(actualRoverList).contains(Arrays.toString(array1)) &&
+                Arrays.asList(actualRoverList).contains(Arrays.toString(array2));
+
+        Assertions.assertTrue(expectedResult);
+    }
+
+    @Test
+    public void testCheckRoverPositionsWithObstructionFromAbove() {
+
+        RectPlateau marsPlateau = new RectPlateau(5, 5);
+        RectPlateauRover marsRover1 = new RectPlateauRover(3,3,
+                RectPlateauRover.Orientation.NORTH, marsPlateau);
+        RectPlateauRover marsRover2 = new RectPlateauRover(1,2,
+                RectPlateauRover.Orientation.EAST, marsPlateau);
+
+        Object[] array1 = {3,3, "NORTH"};
+        Object[] array2 = {3,4, "SOUTH"};
+
+        marsRover2.changePosition("LMMRMMRMM");
+
+        HashMap<String, Object[]> actualRoverMap = marsPlateau.checkRoverPositions();
+        String[] actualRoverList = new String[2];
+        int counter = 0;
+        for (Object[] position : actualRoverMap.values()) {
+            System.out.println(Arrays.toString(position));
+            actualRoverList[counter] = Arrays.toString(position);
+            counter += 1;
+        }
+
+        boolean expectedResult = Arrays.asList(actualRoverList).contains(Arrays.toString(array1)) &&
+                Arrays.asList(actualRoverList).contains(Arrays.toString(array2));
+
+        Assertions.assertTrue(expectedResult);
+    }
+
 }
