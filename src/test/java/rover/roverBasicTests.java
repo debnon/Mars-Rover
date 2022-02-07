@@ -1,10 +1,8 @@
 package rover;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import plateau.RectPlateau;
 
 import java.util.Arrays;
@@ -142,30 +140,30 @@ public class roverBasicTests {
 
     @Test
     public void checkSpawningRoverOnOccupiedPosition() {
+
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             RectPlateau marsPlateau = new RectPlateau(5,5);
             RectPlateauRover testRover = new RectPlateauRover(0,0,
                     RectPlateauRover.Orientation.WEST, marsPlateau);
             RectPlateauRover testRover1 = new RectPlateauRover(0,0,
                     RectPlateauRover.Orientation.WEST, marsPlateau);
-
         });
 
         Assertions.assertEquals("That position on the plateau is already occupied.", exception.getMessage());
-
 
     }
 
     @Test
     public void checkSpawningRoverOutOfBoundsXAxis() {
+
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
             RectPlateau marsPlateau = new RectPlateau(5,5);
             RectPlateauRover testRover = new RectPlateauRover(6,4,
                     RectPlateauRover.Orientation.WEST, marsPlateau);
-
         });
 
         Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
+
     }
 
     @Test
@@ -178,6 +176,7 @@ public class roverBasicTests {
         });
 
         Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
+
     }
 
     @Test
@@ -190,6 +189,7 @@ public class roverBasicTests {
         });
 
         Assertions.assertEquals("That position is outside of the plateau's bounds.", exception.getMessage());
+
     }
 
 }

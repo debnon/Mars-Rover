@@ -2,8 +2,10 @@ package plateau;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import rover.RectPlateauRover;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class PlateauTest {
 
@@ -11,41 +13,41 @@ public class PlateauTest {
     public void checkPlateauInitialization() {
 
         // arrange
-        RectPlateau marsPlateau2 = new RectPlateau(1, 1);
+        RectPlateau marsPlateau = new RectPlateau(1, 1);
         int[] desiredSize = {1,1};
 
         // act
-        int[] actualSize = marsPlateau2.checkPlateauLimits();
+        int[] actualSize = marsPlateau.checkPlateauLimits();
 
         // assert
         Assertions.assertEquals(Arrays.toString(desiredSize), Arrays.toString(actualSize));
     }
 
 
-//
-//    @Test
-//    public void testCheckRoverPositions() {
-//
-//        // arrange
-//        RectMarsPlateau marsPlateau5 = new RectMarsPlateau(0, 0);
-//        RectPlateauRover marsRover1 = new RectPlateauRover(1,1,
-//                RectPlateauRover.Orientation.NORTH, marsPlateau5);
-//        // RectPlateauRover marsRover2 = new RectPlateauRover(3,2, RectPlateauRover.Orientation.EAST);
-//
-//        HashMap<String, Object[]> desiredRoverList = new HashMap<>();
-//        // desiredRoverList.put("1", marsRover1.checkPosition());
-//        // desiredRoverList.put("2", marsRover2.checkPosition());
-//
-//
-//
-//        // act
-//        HashMap<String, Object[]> actualRoverList = marsPlateau5.checkRoverPositions();
-//        for (Object[] position : actualRoverList.values()) {
-//            System.out.println(position[2]);
-//        }
-//
-//        // assert
-//        assertEquals(desiredRoverList, actualRoverList);
-//    }
+    @Test
+    public void testCheckRoverPositions() {
+
+        RectPlateau marsPlateau = new RectPlateau(5, 5);
+        RectPlateauRover marsRover1 = new RectPlateauRover(1,1,
+                RectPlateauRover.Orientation.NORTH, marsPlateau);
+        RectPlateauRover marsRover2 = new RectPlateauRover(3,2,
+                RectPlateauRover.Orientation.EAST, marsPlateau);
+
+        Object[] array1 = {1,1, "NORTH"};
+        Object[] array2 = {3,2, "EAST"};
+        Object[][] desiredRoverList = {array1, array2};
+
+        HashMap<String, Object[]> actualRoverMap = marsPlateau.checkRoverPositions();
+        Object[][] actualRoverList = new Object[2][];
+        int counter = 0;
+        for (Object[] position : actualRoverMap.values()) {
+            actualRoverList[counter] = position;
+            counter += 1;
+        }
+
+        // assert
+        Assertions.assertEquals(Arrays.toString(desiredRoverList[0]), Arrays.toString(actualRoverList[0]));
+        Assertions.assertEquals(Arrays.toString(desiredRoverList[1]), Arrays.toString(actualRoverList[1]));
+    }
 
 }
